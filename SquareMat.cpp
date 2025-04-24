@@ -1,6 +1,7 @@
 //dotandanino@gmail.com
 #include "SquareMat.hpp"
 using namespace matrix;
+//constructor
 SquareMat::SquareMat(int n,double initVal){
     if(n<=0){
         throw std::invalid_argument("n must be positive number");
@@ -14,6 +15,7 @@ SquareMat::SquareMat(int n,double initVal){
         }
     }
 }
+//copy constructor
 SquareMat::SquareMat(const SquareMat& other){
     this->n=other.n;
     this->mat = new double*[n];
@@ -24,13 +26,14 @@ SquareMat::SquareMat(const SquareMat& other){
         }
     }
 }
+//destructor
 SquareMat::~SquareMat(){
     for(int i=0;i<this->n;i++){
         delete[] this->mat[i];
     }
     delete[] this->mat;
 }
-//mat1 = mat2 + mat3
+//mat1 + mat2
 SquareMat SquareMat::operator+(const SquareMat& other){
     if(this->n!=other.n){
         throw std::invalid_argument("matrix sizes have to be the same");
@@ -44,10 +47,7 @@ SquareMat SquareMat::operator+(const SquareMat& other){
     }
     return toReturn;
 }
-//SquareMat mat1(4,4);
-//SquareMat mat2(3,5);
 //mat1 = mat2;
-
 SquareMat& SquareMat::operator=(const SquareMat& other){
 
     if (this==&other)
@@ -75,7 +75,7 @@ SquareMat& SquareMat::operator=(const SquareMat& other){
     }
     return *this;
 }
-
+// mat2 = -mat1;
 SquareMat SquareMat::operator-(){
     SquareMat toReturn(this->n);
     for (int i = 0; i < this->n; i++)
@@ -87,7 +87,7 @@ SquareMat SquareMat::operator-(){
     }
     return toReturn;
 }
-
+// mat1 - mat2;
 SquareMat SquareMat::operator-(const SquareMat& other){
     if(this->n!=other.n){
         throw std::invalid_argument("matrix sizes have to be the same");
@@ -101,7 +101,7 @@ SquareMat SquareMat::operator-(const SquareMat& other){
     }
     return toReturn;
 }
-
+// mat1* mat2;
 SquareMat SquareMat::operator*(const SquareMat& other){
     if(this->n!=other.n){
         throw std::invalid_argument("matrix sizes have to be the same");
@@ -117,7 +117,7 @@ SquareMat SquareMat::operator*(const SquareMat& other){
     }
     return toReturn;
 }
-
+// mat* scalar;
 SquareMat SquareMat::operator*(double scalar){
     SquareMat toReturn(*this);
     for (int i = 0; i < this->n ; i++)
@@ -129,11 +129,11 @@ SquareMat SquareMat::operator*(double scalar){
     }
     return toReturn;
 }
-
+// scalar * mat;
 SquareMat matrix::operator*(double scalar,SquareMat& mat){
     return mat*scalar;
 }
-
+// mat1 % mat2; multiply every two items in the same position.
 SquareMat SquareMat::operator%(const SquareMat& other){
     if(this->n!=other.n){
         throw std::invalid_argument("matrix sizes have to be the same");
@@ -147,7 +147,7 @@ SquareMat SquareMat::operator%(const SquareMat& other){
     }
     return toReturn;
 }
-
+// mat%scalar
 SquareMat SquareMat::operator%(int scalar){
     SquareMat toReturn(*this);
     for (int i = 0; i < this->n; i++)
@@ -158,7 +158,7 @@ SquareMat SquareMat::operator%(int scalar){
     }
     return toReturn;
 }
-
+// mat/scalar;
 SquareMat SquareMat::operator/(double scalar){
     SquareMat toReturn(*this);
     for (int i = 0; i < this->n; i++)
@@ -169,7 +169,7 @@ SquareMat SquareMat::operator/(double scalar){
     }
     return toReturn;
 }
-
+// mat ^ scalar
 SquareMat SquareMat::operator^(int scalar){
     if(scalar<0){
         throw std::invalid_argument("the scalar cant be negative");
@@ -188,7 +188,7 @@ SquareMat SquareMat::operator^(int scalar){
     return toReturn;
     
 }
-
+//mat++
 SquareMat SquareMat::operator++(int dummy_flag_for_postfix_increment){//n++
     SquareMat toReturn(*this);
     for (int i = 0; i < this->n; i++)
@@ -201,7 +201,7 @@ SquareMat SquareMat::operator++(int dummy_flag_for_postfix_increment){//n++
     return toReturn;
     
 }
-
+//++mat
 SquareMat& SquareMat::operator++(){//++n
     for (int i = 0; i < this->n; i++)
     {
@@ -212,7 +212,7 @@ SquareMat& SquareMat::operator++(){//++n
     }
     return *this;
 }
-
+//mat--
 SquareMat SquareMat::operator--(int dummy_flag_for_postfix_increment){//n--
     SquareMat toReturn(*this);
     for (int i = 0; i < this->n; i++)
@@ -225,7 +225,7 @@ SquareMat SquareMat::operator--(int dummy_flag_for_postfix_increment){//n--
     return toReturn;
     
 }
-
+//--mat;
 SquareMat& SquareMat::operator--(){//--n
     for (int i = 0; i < this->n; i++)
     {
@@ -237,6 +237,7 @@ SquareMat& SquareMat::operator--(){//--n
     return *this;
 }
 
+//~mat; -transpose 
 SquareMat SquareMat::operator~(){
     SquareMat transposeMat(this->n,this->n);
     for (int i = 0; i < this->n; i++)
@@ -248,14 +249,15 @@ SquareMat SquareMat::operator~(){
     }
     return transposeMat;
 }
-
+//mat[i]; in use for getting acsses to mat[i][j]
 double* SquareMat::operator[](int index){
     if(index<0||this->n<=index){
         throw std::invalid_argument("The index must be bewteen 0 to rows -1");
     }
     return this->mat[index];
 }
-
+//mat1==mat2'
+// matrix will be equals if the sum of their items are the same;
 bool SquareMat::operator==(const SquareMat& other){
     double sum=0;
     for (int i = 0; i < this->n; i++)
@@ -274,22 +276,23 @@ bool SquareMat::operator==(const SquareMat& other){
     }
     return sum==0;
 }
-
+// mat1!=mat2;
 bool SquareMat::operator!=(const SquareMat& other){
     return !(*this==other);
 }
-
+// mat1<=mat2;
 bool SquareMat::operator<=(const SquareMat& other){
     return((*this)<other || (*this)==other);
 }
-
+// mat1<mat2;
 bool SquareMat::operator<(const SquareMat& other){
     return !((*this)>=other);
 }
+// mat1>=mat2;
 bool SquareMat::operator>=(const SquareMat& other){
     return((*this)>other || (*this)==other);
 }
-
+// mat1>mat2;
 bool SquareMat::operator>(const SquareMat& other){
     double sum=0;
     for (int i = 0; i < this->n; i++)
@@ -308,7 +311,7 @@ bool SquareMat::operator>(const SquareMat& other){
     }
     return sum>0;
 }
-
+// !mat; - calculate the det of the matrix using recursive call to smaller matrix
 double SquareMat::operator!(){
     if(this->n==1){
         return mat[0][0];
@@ -340,41 +343,42 @@ double SquareMat::operator!(){
     return det;
 }
 
+//mat1%=mat2;
 SquareMat SquareMat::operator%=(const SquareMat& other){
     *this = (*this)%other;
     return (*this);
 }
-
+//mat1%=scalar;
 SquareMat SquareMat::operator%=(int scalar){
     *this=*this%scalar;
     return(*this);
 }
-
+//mat1*=mat2;
 SquareMat SquareMat::operator*=(const SquareMat& other){
     *this =( (*this)*other);
     return (*this);
 }
-
+//mat1*=scalar;
 SquareMat SquareMat::operator*=(double scalar){
     *this = (*this)*scalar;
     return (*this);
 }
-
+//mat1-=mat2;
 SquareMat SquareMat::operator-=(const SquareMat& other){
     *this = (*this) - other;
     return (*this);
 }
-
+//mat1/=mat2;
 SquareMat SquareMat::operator/=(const double scalar){
     *this = (*this)/scalar;
     return (*this);
 }
-
+//mat1+=mat2;
 SquareMat SquareMat::operator+=(const SquareMat& other){
     *this = (*this)+other;
     return (*this);
 }
-
+//cout<<"matrix is"<<mat;
 std::ostream& matrix::operator<< (std::ostream& output, const SquareMat& mat){
     for(int i=0;i<mat.n;i++){
         for(int j=0;j<mat.n;j++){
@@ -384,7 +388,7 @@ std::ostream& matrix::operator<< (std::ostream& output, const SquareMat& mat){
     }
     return output;
 }
-
+//mat.getN();
 int SquareMat::getN(){
     return this->n;
 }

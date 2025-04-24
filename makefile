@@ -1,6 +1,6 @@
 #dotandanino@gmail.com
 CXX=clang++
-CXXFLAGS=-std=c++2a -g
+CXXFLAGS=-std=c++2a -g -Wall -Wextra
 TARGET=main
 SRCS=SquareMat.cpp
 HEADERS=SquareMat.hpp
