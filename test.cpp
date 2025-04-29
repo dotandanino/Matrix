@@ -314,7 +314,7 @@ TEST_SUITE("SquareMat"){
         CHECK(transposed[2][2] == 9);
     }
     TEST_CASE("[]"){
-        SquareMat mat(2);
+        SquareMat mat(3);
         mat[0][0] = 5;
         mat[1][1] = 10;
 
@@ -323,10 +323,12 @@ TEST_SUITE("SquareMat"){
 
         SUBCASE("NEGATIVE INDEX") {
             CHECK_THROWS_WITH(mat[-1],"The index must be bewteen 0 to rows -1");
+            CHECK_THROWS_WITH(mat[0][-1],"The index must be bewteen 0 to cols -1");
         }
 
-        SUBCASE("OUT OF BOUNDS INDEX") {
-            CHECK_THROWS_WITH(mat[2],"The index must be bewteen 0 to rows -1");
+        SUBCASE("OUT OF BOUNDS") {
+            CHECK_THROWS_WITH(mat[5],"The index must be bewteen 0 to rows -1");
+            CHECK_THROWS_WITH(mat[0][5],"The index must be bewteen 0 to cols -1");
         }
     }
     TEST_CASE("== and !="){

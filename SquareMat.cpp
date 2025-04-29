@@ -250,11 +250,11 @@ SquareMat SquareMat::operator~(){
     return transposeMat;
 }
 //mat[i]; in use for getting acsses to mat[i][j]
-double* SquareMat::operator[](int index){
+row SquareMat::operator[](int index){
     if(index<0||this->n<=index){
         throw std::invalid_argument("The index must be bewteen 0 to rows -1");
     }
-    return this->mat[index];
+    return row (this->n,this->mat[index]);
 }
 //mat1==mat2'
 // matrix will be equals if the sum of their items are the same;

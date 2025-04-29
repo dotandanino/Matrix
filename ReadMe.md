@@ -46,10 +46,12 @@
     - makefile
     - Main.cpp
     - test.cpp
+    - row.hpp row.cpp
 ### Classes:
     - SquareMat
+    - rows
     all the operators are declared in the hpp file
 ### Data Structures:
-    - I didnt need to implement any data structure for this project
+    - I build data structures to represent a row for the mat[i][j] operator
 ### NameSpace
     all the project is under the name space matrix

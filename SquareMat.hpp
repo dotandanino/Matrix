@@ -3,6 +3,7 @@
 #ifndef SQUAREMAT_HPP
 #define SQUAREMAT_HPP
 #include <iostream>
+#include "row.hpp"
 #include <cmath>
 namespace matrix{
     class SquareMat{
@@ -36,7 +37,7 @@ namespace matrix{
             //--n
             SquareMat& operator--();
             SquareMat operator~();
-            double* operator[](int index);
+            row operator[](int index);
             //במטלה הזאת מטריצות הן שוות אם סכום האיברים שלהם זהה.
             bool operator==(const SquareMat& other);
             bool operator!=(const SquareMat& other);
