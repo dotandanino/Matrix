@@ -29,9 +29,9 @@
 
 - there is three ways to run this project you can run the main or the test or to run valgrind on both of then.
     #### run main
-    - to run main you need to write the next commands:
+    - to run main first time you need to write the next commands:
         - make main
-        - ./main
+    after you build the files you can write: ./main
     #### run test
     - to run test you need to write the next commands:
         - make test

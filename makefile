@@ -11,6 +11,7 @@ TEST_OBJ = $(TEST_SRC:.cpp=.o)
 all: $(TARGET) $(TEST_TARGET)
 $(TARGET): $(OBJS) main.o
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) main.o
+	./main
 
 $(TEST_TARGET): $(OBJS) $(TEST_OBJ)
 	$(CXX) $(CXXFLAGS) -o $(TEST_TARGET) $(TEST_OBJ) $(OBJS)
