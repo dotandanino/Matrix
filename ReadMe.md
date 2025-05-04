@@ -31,7 +31,7 @@
     #### run main
     - to run main first time you need to write the next commands:
         - make main
-    after you build the files you can write: ./main
+    - after you build the files you can write: ./main
     #### run test
     - to run test you need to write the next commands:
         - make test
